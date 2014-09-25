@@ -1,4 +1,4 @@
 <?php
-	setcookie('credentials', 'Xeroo', time() - 2592000, '/');
-	if(!isset($_COOKIE['credentials'])) echo "Logout Successfull";
+	setcookie('username', 'Xeroo', time() - 2592000, '/');
+	if(!isset($_COOKIE['username'])) echo "Logout Successfull";
 ?>

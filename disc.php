@@ -1,29 +1,34 @@
 <html>
-<body>
+	<head><title id="tab">Single Chats</title>
+		<link rel="stylesheet" type="text/css" href="chat.css"/>
+	</head>	
+	<body>
 	<?php
 		//improve indentation of js URGENT!!!!!
 		require_once 'login.php';
 		$connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
 		if($connection->connect_error) 
 		echo "connect_error:".$db_database.'<br>';
-		if(!isset($_COOKIE['credentials']))
+		if(!isset($_COOKIE['username']))
 		{
 			echo "HAGA NA!";
 			header('Location: /index.php');
 		}	
-		echo $_COOKIE['credentials'];
-		$result=$connection->query("select `name`,`roll_no` from `student`");
+		$me= $_COOKIE['username'];
+		$result=$connection->query("select `name`,`roll_no` from `user` where `roll_no` not like '$me'");
 		if(!$result) echo "Query Error!!";
-		
+		echo "<div id=\"list\">";
 		for($i=0;$i<$result->num_rows;$i++)
 		{
 			$nmae=$result->fetch_row();
-			echo "<div onclick=selector('$nmae[1]')>$nmae[0]</div>"."<br>";
+			$nm=$nmae[0];
+			echo "<div class=\"listEle\" onclick=\"selector('$nmae[1]','$nm')\">$nmae[0]</div>";
 		}
+		echo "</div>";
 	?>
-	<div id="here">RepLaCE</div>
+	<div id="msgSpan">RepLaCE</div>
 	
-	<form onsubmit="return false">
+	<form onsubmit="return false" id="box">
                 <input type=text id="message_input">
                 <input onclick="fire()" type="submit" id="send_button">
 	</form>
@@ -31,20 +36,21 @@
 		var me=0;
 		//this function loads only when the partner is selected
 		
-		function selector(roll_no)
+		function selector(roll_no,name)
 		{
+			document.getElementById('tab').innerHTML=name
 //			alert("alive"+me);
 			me=roll_no;
-			setInterval(function(){freeze(me)},1000);
+			
 	//		alert("alive"+me);
 			request = new ajaxRequest()
 			request.open("POST", "msgpost.php",true)
 			request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-			request.send("roll="+me)
-			alert("alive0"+me);
+			
+			//alert("alive0"+me);
 			request.onreadystatechange = function()
 			{
-				//alert("alive1"+me);
+				//alert("alive1"+this.readystate);
 				if (this.readyState == 4)
 				{
 					//alert("alive2"+me);
@@ -53,14 +59,15 @@
 						//alert("alive3"+me);
 						if (this.responseText != null)
 						{
-							
-							document.getElementById('here').innerHTML =this.responseText
+							document.getElementById('msgSpan').innerHTML =this.responseText
+							setInterval(function(){freeze(me)},1000);
 						}
 						else alert("Ajax error: No data received")
 					}
 					else alert( "Ajax error: " + this.statusText)
 				}
-			}			
+			}
+			request.send("roll="+me)	
 		}
 		var params;
 		var request;
@@ -81,7 +88,7 @@
 				{
 					if (this.responseText != null)
 					{
-						document.getElementById('here').innerHTML =document.getElementById('here').innerHTML+"<br>"+this.responseText
+						document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+"<br>"+this.responseText
 					}
 					else alert("Ajax error: No data received")
 				}
@@ -107,7 +114,7 @@
 					{
 						if (this.responseText != null)
 						{
-							document.getElementById('here').innerHTML =document.getElementById('here').innerHTML+this.responseText
+							document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+this.responseText
 						}
 						else alert("Ajax error: No data received")
 					}

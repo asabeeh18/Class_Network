@@ -3,7 +3,8 @@ require_once 'login.php';
 $connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
 if($connection->connect_error) 
 	echo "connect_error:".$db_database.'<br>';
-//echo $_POST['img'];
+	
+//add validation and sqlinjection
 $name=$_POST['name'];
 $password=$_POST['password'];
 echo $name;
@@ -11,18 +12,27 @@ echo $password;
 $result=$connection->query("select `pswd`,`name` from `user` where `roll_no`='$name'");
 if(!$result)
 	die("ERROR");
-$result->data_seek(0);
-if($result->fetch_assoc()['password']==$password)
+$data=$result->fetch_row();
+if($data[0]==$password)
 {
-	if(isst($_POST['rmmbr']))
+	echo $data[0]."<br>";
+	//die($result->fetch_assoc()['name']);
+	if(isset($_POST['remmbr']))
 	{
-		setcookie(fetch_assoc()['name'],$name,time()+100*60*60*60,'/');
+		
+		setcookie('username',$name,time()+300*60*60,'/');
+		//die("set");
+		//if(isset($_COOKIE['username'])) die("sioetting");
 		header('Location: /menu.php');
+		
 	}
 	else
 	{
-		setcookie(fetch_assoc()['password'],$name,'/');
+		
+		setcookie('username',$name,0,'/');
+		//die("setting1");
 		header('Location: /menu.php');
+		
 	}
 }
 else
