@@ -22,7 +22,7 @@
 	echo <<<END
 			SUCCESSFULLY REGISTERED!!<br>NAME $name<br>Roll No. $roll<br>
 END;
-			setcookie($name,$roll,'/');
+			setcookie('username',$name,time()+300*60*60,'/');
 			header('Location: /menu.php');
 			exit();
 	}

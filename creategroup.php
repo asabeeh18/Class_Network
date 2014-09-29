@@ -7,16 +7,7 @@
 		</form>
 		Select people to add to group<br>
 		<?php
-		require_once 'login.php';
-		$connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
-		if($connection->connect_error) 
-		echo "connect_error:".$db_database.'<br>';
-		if(!isset($_COOKIE['username']))
-		{
-			echo "HAGA NA!";
-			header('Location: /index.php');
-		}	
-		echo $_COOKIE['username'];
+		require_once 'redirect.php';
 		$result=$connection->query("select `name`,`roll_no` from `user`");
 		if(!$result) echo "Query Error!!";
 		

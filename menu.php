@@ -15,7 +15,7 @@ include 'redirect.php';
 		{
 			$pic=$result->fetch_row();
 			//echo $pic[0];
-			echo "<img src=$pic[0] alt='some_text'>"."<br>";
+			echo "<img src=$pic[0]>"."<br>";
 		}
 		else echo "hAGA NA!";
 		?>

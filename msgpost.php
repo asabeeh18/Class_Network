@@ -44,14 +44,16 @@ else if(isset($_POST['msg']))
 {
 	$msg=$_POST['msg'];
 	$roll=$_POST['me'];
+	echo $roll."---".$msg;
 	$sql = "INSERT INTO `priv1disc` (`receiver`, `sender`, `msg`, `time`) VALUES ('$roll', '$me', '$msg', sysdate(3));";
 	$result=$connection->query($sql);
 	if(!$result) die("Query Error");
-	else echo "<div class=\"me\">".$msg."</div>";
+	//else echo "<div class=\"me\">".$msg."</div>";
 }
 else if(isset($_POST['check']))
 {
 	$roll=$_POST['check'];
+	//echo $roll."-".$me."<br>";
 	$sql="select msg,count(*) from `priv1disc` where (`sender` like '$roll' AND `receiver` like '$me' AND `status`=0) order by time asc";
 	$result=$connection->query($sql);
 	if(!$result) echo "Query Error!!@54";
@@ -71,5 +73,5 @@ else if(isset($_POST['check']))
 	}
 }
 
-else "Error Big Time";
+else echo "Error Big Time";
 ?>

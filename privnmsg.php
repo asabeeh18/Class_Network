@@ -49,30 +49,31 @@ else if(isset($_POST['msg']))
 	//echo "setmsg";
 	$msg=$_POST['msg'];
 	$roll=$_POST['me'];
+	
 	//echo $msg." ".$roll." ".$me;
-	$sql = "INSERT INTO `privndisc` (`dname`,`sender`, `msg`) VALUES ('$roll','$me', '$msg');";
+	$sql = "INSERT INTO `privndisc` (`dname`,`sender`, `msg`) VALUES ('$roll','$me','$msg');";
 	$result=$connection->query($sql);
-	if(!$result) die("Query Error");
+	if(!$result) die("Query Error 55");
 	else echo "<div class=\"me\">".$msg."</div>";
 }
 else if(isset($_POST['check']))
 {
 	//echo "setcheck";
 	$roll=$_POST['check'];
-	$sql="select msg,count(*) from `privndisc` where (`dname` like '$roll' AND `status`=0) order by time asc";
+	$sql="select `msg`,`sender` from `privndisc` where (`dname` like '$roll' AND `status`=0) order by `time` asc";
 	$result=$connection->query($sql);
-	if(!$result) echo "Query Error!!@54";
+	if(!$result) echo "error";
 	else
 	{
 		$r=$result->fetch_row();
 		for($i=0;$i<$result->num_rows;$i++)
 		{
-			echo "<div class=\"you\">".$r[0]."</div>";		
+			echo "<div class=\"you\">".$r[1].":".$r[0]."</div>";		
 		}
 		//echo "out";
 		$sql="UPDATE `privndisc` SET `status` = 1 WHERE `dname` like '$roll'  AND `status`=0";
 		$result=$connection->query($sql);
-		if(!$result) echo "Query Error";
+		if(!$result) echo "Query Error 75";
 	}
 }
 
