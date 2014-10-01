@@ -14,7 +14,6 @@
 	$status=$r[7];
 	$gender=$r[5];
 	echo <<< _GO
-	
 		<form action=edit.php method='POST' enctype="multipart/form-data">
 			Name<input name='name' type='text' required='required' value=$name><br>
 			Roll No<input disabled name='roll_no' type='text' required='required' value=$roll><br>
@@ -29,6 +28,5 @@
 			Date OF Birth<input name='dob' type='date' value=$dob><br>
 			<input type='submit'><br>
 		</form>
-		
 _GO;
 ?>
