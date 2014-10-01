@@ -18,7 +18,7 @@
 _GO;
 		$r=$result->fetch_row();
 	}
-	echo "<div id='announce'>OR CREATE EVENT</div>";
+	echo "<div id='create'>OR CREATE EVENT</div>";
 	echo <<< _GO
 	<form method=POST action="addevent.php">
 	Name<input type="text" name="name"><br>

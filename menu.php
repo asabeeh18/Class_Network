@@ -20,8 +20,8 @@ include 'redirect.php';
 		else echo "hAGA NA!";
 		?>
 		<li><a href="Profile.php">My Profile</a></li>
-		<li><a href="ref.html">References</a></li>
-		<li><a href="events.html">Events</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
 		<li><a href="discl.html">Discussions</a></li>
 		<li><a href="logout.php">Logout</a></li>
 		

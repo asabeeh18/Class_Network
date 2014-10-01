@@ -3,8 +3,10 @@
 	include 'redirect.php';
 	$auth="%";
 	$subj="%";
+	if(isset($_POST['auth']))
 	if($_POST['auth']!="")
 		$auth=$_POST['auth'];
+	if(isset($_POST['subj']))
 	if($_POST['subj']!="")
 		$subj=$_POST['subj'];
 	//show the top/side bar 
