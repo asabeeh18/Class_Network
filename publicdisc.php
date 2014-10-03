@@ -57,14 +57,12 @@ else if(isset($_POST['check']))
 {
 	//echo "setcheck";
 	$roll=$_POST['check'];
-	$sql="select msg,count(*) from `publicdisc` where (`status`=0) order by time asc";
+	$sql="select `msg` from `publicdisc` where (`status`=0) order by time asc";
 	$result=$connection->query($sql);
-	if(!$result) echo "Query Error!!@54";
+	if(!$result) echo "Query Error!!@54".$connection->error;
 	else
 	{
 		$r=$result->fetch_row();
-		if($r[1]==0)
-			exit();
 		for($i=0;$i<$r[1];$i++)
 		{
 			echo "<div class=\"you\">".$r[0]."</div>";

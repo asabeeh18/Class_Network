@@ -17,7 +17,7 @@
 	$mob=$r[4];
 	$status=$r[7];
 	$gender=$r[5];
-	echo "<a href=editprofile.php>Edit Profile</a>";
+	echo "<a href=editprofile.php>Edit Profile</a><br><a href=searchppl.php>Search People</a>";
 //	echo $pic;
 	echo <<< _GO
 	<div id="pic"><img src=$pic alt='some_text'>
