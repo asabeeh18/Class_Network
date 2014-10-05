@@ -1,10 +1,10 @@
 <html>
 	<head><title id="tab">Single Chats</title>
-		<link rel="stylesheet" type="text/css" href="chat.css"/>
+		<link rel=stylesheet type=text/css href=chat.css>
 	</head>	
 	<body>
 	<?php
-		//improve indentation of js URGENT!!!!!
+		
 		require_once 'login.php';
 		$connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
 		if($connection->connect_error) 
@@ -15,6 +15,7 @@
 			header('Location: /index.php');
 		}	
 		$me= $_COOKIE['username'];
+		echo $me;
 		$result=$connection->query("select `name`,`roll_no` from `user` where `roll_no` not like '$me'");
 		if(!$result) echo "Query Error!!";
 		echo "<div id=\"list\">";
@@ -26,16 +27,20 @@
 		}
 		echo "</div>";
 	?>
-	<div id="msgSpan">RepLaCE</div>
-	
-	<form onsubmit="return false" id="box">
-                <input type=text id="message_input">
-                <input onclick="fire()" type="submit" id="send_button">
-	</form>
+	<div id="collect">
+		<div id="msgSpan"></div>
+		<form onsubmit="return false" id="box">
+					<input type=text id="message_input">
+					<input onclick="fire()" type="submit" id="send_button">
+		</form>
+	</div>
 	<script>
 		var me=0;
 		//this function loads only when the partner is selected
-		
+		function niche()
+		{
+			document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
+		}
 		function selector(roll_no,name)
 		{
 			document.getElementById('tab').innerHTML=name
@@ -61,6 +66,7 @@
 						{
 							document.getElementById('msgSpan').innerHTML =this.responseText
 							setInterval(function(){freeze(me)},1000);
+							document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
 						}
 						else alert("Ajax error: No data received")
 					}
@@ -75,6 +81,7 @@
 		{
 		x=document.getElementById("message_input");
 		params="msg="+x.value;
+		document.getElementById("message_input").value = "";
 		request = new ajaxRequest()
 		request.open("POST", "msgpost.php",true)
 		request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
@@ -88,7 +95,8 @@
 				{
 					if (this.responseText != null)
 					{
-						document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+"<br>"+this.responseText
+						document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+this.responseText
+						document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
 					}
 					else alert("Ajax error: No data received")
 				}
@@ -115,6 +123,7 @@
 						if (this.responseText != null)
 						{
 							document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+this.responseText
+							document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
 						}
 						else alert("Ajax error: No data received")
 					}

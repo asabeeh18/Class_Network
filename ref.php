@@ -1,3 +1,18 @@
+<html>
+	<head><title>Reference Books</title>
+	<link rel=stylesheet href=style.css>
+	<style>
+		body
+		{
+			background-image: url('img/ref1.jpg');
+			 -webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+  		}
+	</style>	
+	</head>
+	<body>
 <?php
 	//references
 	include 'redirect.php';
@@ -11,10 +26,12 @@
 		$subj=$_POST['subj'];
 	//show the top/side bar 
 	echo <<< _GO
-	<form method=POST action=ref.php>
+	<!--Style the text and colors of this page inline is preferred-->
+	<H1>Reference Books</H1>
+	<form method=POST action=ref.php class="container">
 		Author<input type="text" name="auth"><br>
 		Subject<input type="text" name="subj"><br>
-		<input type="submit">
+		<input type="submit" value=Search>
 	</form>
 _GO;
 	$sql="select * from `reference` where `author` like '$auth' AND `subject` like '$subj'";
@@ -22,16 +39,29 @@ _GO;
 	if(!$result) die("Query Error!");
 	if($result->num_rows==0)
 		echo "<div id='error'>NO RESULT MATCH</div>";
+	echo <<< _GO
+			<div class="auth_table">
+			<table border="1" class="container">
+			<tr>
+					<th>Author</th>
+					<th>Name</th>
+					<th>Subject</th>
+					<th>Link</th>
+			</tr>
+_GO;
 	$r=$result->fetch_row();
 	for($i=0;$i<$result->num_rows;$i++)
 	{
 		echo <<< _GO
-		<div id='book'>'$r[0]'</div>
-		<div id='auth'>'$r[1]'</div>
-		<div id='subj'>'$r[2]'</div>
-		<div id='link'><a href='$r[3]'>Download</a></div>
+			<tr>
+				<td>$r[1]</td>
+				<td>$r[0]</td>
+				<td>$r[2]</td>
+				<td><a href='$r[3]'>Download</a></td>
+			</tr>
 _GO;
 		$r=$result->fetch_row();
 	}
+	echo "</table></div></body></html>";
 	//footer and shit
 ?>	

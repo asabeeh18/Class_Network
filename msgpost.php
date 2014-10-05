@@ -19,7 +19,7 @@ if(isset($_POST['roll']))
 	$result2=$connection->query($sql);
 	if(!$result1 || !$result2) echo "Query Error!!@18";
 	//$rows=(($result1->num_rows)<($result2->num_rows))?$result1->num_rows:$result2->num_rows;
-	//echo "YOU          ".$roll."<br>";
+	//echo "him          ".$roll."<br>";
 	$r2=$result2->fetch_row();
 	$r1=$result1->fetch_row();
 	//header('Location: /index.php');
@@ -34,7 +34,7 @@ if(isset($_POST['roll']))
 		}
 		else if($j<$result2->num_rows)
 		{
-			echo "<div class=\"you\">".$r2[0]."</div>";
+			echo "<div class=\"him\">".$r2[0]."</div>";
 			$r2=$result2->fetch_row();
 			$j++;
 		}
@@ -44,11 +44,11 @@ else if(isset($_POST['msg']))
 {
 	$msg=$_POST['msg'];
 	$roll=$_POST['me'];
-	echo $roll."---".$msg;
-	$sql = "INSERT INTO `priv1disc` (`receiver`, `sender`, `msg`, `time`) VALUES ('$roll', '$me', '$msg', sysdate(3));";
+	//echo $roll."---".$msg;
+	$sql = "INSERT INTO `priv1disc` (`receiver`, `sender`, `msg`, `time`) VALUES ('$roll', '$me', '$msg', sysdate(6));";
 	$result=$connection->query($sql);
-	if(!$result) die("Query Error");
-	//else echo "<div class=\"me\">".$msg."</div>";
+	if(!$result) die("Query Error 50".$connection->error);
+	else echo "<div class=\"me\">".$msg."</div>";
 }
 else if(isset($_POST['check']))
 {
@@ -64,12 +64,12 @@ else if(isset($_POST['check']))
 			exit();
 		for($i=0;$i<$r[1];$i++)
 		{
-			echo "<div class=\"you\">".$r[0]."</div>";
+			echo "<div class=\"him\">".$r[0]."</div>";
 		}
 		//echo "out";
 		$sql="UPDATE `priv1disc` SET `status` = 1 WHERE `sender` = '$roll' AND `receiver`='$me' AND `status`=0";
 		$result=$connection->query($sql);
-		if(!$result) echo "Query Error";
+		if(!$result) echo "Query Error @72";
 	}
 }
 
