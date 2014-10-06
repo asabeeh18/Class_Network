@@ -23,7 +23,7 @@ if($data[0]==$password)
 		setcookie('username',$name,time()+300*60*60,'/');
 		//die("set");
 		//if(isset($_COOKIE['username'])) die("sioetting");
-		header('Location: /menu.php');
+		header('Location: /index.php');
 		
 	}
 	else
@@ -31,7 +31,7 @@ if($data[0]==$password)
 		
 		setcookie('username',$name,0,'/');
 		//die("setting1");
-		header('Location: /menu.php');
+		header('Location: /index.php');
 		
 	}
 }
@@ -41,7 +41,7 @@ else
 	$try=$try+1;
 	if($try==3)
 		die("Limit Reached");
-	header("Location: /index.php?try=$try");
+	header("Location: /enter.php?try=$try");
 }
 
 $result->close();

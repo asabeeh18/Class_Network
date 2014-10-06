@@ -17,7 +17,7 @@
 			echo "<div onclick=selector('$nmae[1]')>$nmae[0]</div>"."<br>"; //css color change
 		}
 		?>
-		<div id="resp">resp</div>
+		<div id="resp"></div>
 		<script>
 			
 		function selector(name)

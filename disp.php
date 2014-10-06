@@ -1,20 +1,50 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="chat.css"/>
-		<title>Private Group Chats</title>
+		<title>Public Discussions</title>
+		<style>
+		#msgspan{
+			width:700px;
+			margin-left:300px;
+		}
+		#box{
+			top:500px;
+			left:400px;
+		}
+		
+		ul#menu {
+    padding: 0;
+}
+	ul#menu li a {
+		background-color: black;
+		line-height: 300%;
+		color: white;
+		padding: 10px 20px;
+		text-decoration: none;
+		border-radius: 5px 5px 5px 5px;
+	}
+	#menu{
+		position:absolute;
+		left:10px;
+	}
+	ul#menu li a:hover{
+		background-color:white;
+		color:black;
+	}
+		</style>
 	</head>
 	<body onload="getMsg()">
+	<ul id=menu>
+		<li><a href="Profile.php">My Profile</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
+		<li><a href="discl.html">Discussions</a></li>
+		<li><a href="logout.php">Logout</a></li>
+	</ul>
+		
 	<?php
 		//improve indentation of js URGENT!!!!!
-		require_once 'login.php';
-		$connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
-		if($connection->connect_error) 
-		echo "connect_error:".$db_database.'<br>';
-		if(!isset($_COOKIE['username']))
-		{
-			echo "HAGA NA!";
-			header('Location: /index.php');
-		}	
+		include 'redirect.php';	
 		$me=$_COOKIE['username'];
 		//echo $me;
 	?>
@@ -45,9 +75,9 @@
 						//alert("alive3"+me);
 						if (this.responseText != null)
 						{
-							
 							document.getElementById('msgSpan').innerHTML =this.responseText
 							setInterval(function(){freeze()},1000);			
+							document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
 						}
 						else alert("Ajax error: No data received")
 					}
@@ -62,14 +92,15 @@
 		function fire()
 		{
 		x=document.getElementById("message_input");
-		
+		x=x.value
 		request = new ajaxRequest()
 		request.open("POST", "publicdisc.php",true)
 		request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
 		//alert("msg="+x.value);
-		
-			//alert("send");
-			request.send("msg="+x.value)
+			//alert(x);
+			
+			request.send("msg="+x)
+			document.getElementById("message_input").value = "";
 		request.onreadystatechange = function()
 		{
 		//	alert(this.readyState);
@@ -106,6 +137,7 @@
 						if (this.responseText != null)
 						{
 							document.getElementById('msgSpan').innerHTML =document.getElementById('msgSpan').innerHTML+this.responseText
+							document.getElementById("msgSpan").scrollTop= document.getElementById("msgSpan").scrollHeight;
 						}
 						else alert("Ajax error: No data received")
 					}

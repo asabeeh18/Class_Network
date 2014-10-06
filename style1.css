@@ -50,17 +50,14 @@ table {
 }
 
 table, th, td {
-    border: 1px solid black;
 }
 
 table tr th {
-	padding: 1em;
 	vertical-align: middle;
 	font-weight: bold;
 }
 
 table tr td {
-	padding: 1em;
 	vertical-align: middle;
 }
 
@@ -97,30 +94,5 @@ table tr td {
 	margin: 20px;
 }
 
-.status {
-	margin: 2em;
-	text-indent: 4em;
-}
-
-.status h2 {
-	font-size: 2em;
-}
-
-.info {
-	display: inline-block;
-	border: 1px solid #ccc;
-}
-
-.info table tr td {
-	padding: 1em 3em;
-}
 
 /* References */
-
-.auth_search, .auth_table {
-	padding: 2em;
-}
-
-.auth_search, .input_search, .auth_table {
-	text-align: center;
-}

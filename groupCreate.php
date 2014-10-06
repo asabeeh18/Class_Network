@@ -11,5 +11,5 @@ $nmae=$connection->real_escape_string($nmae);
 	if(!$result)
 		echo ":'(";
 	else
-		echo "ALL COOL"
+		echo "ALL OK"
 ?>

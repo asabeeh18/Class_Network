@@ -1,19 +1,57 @@
 <html>
 	<head><link rel="stylesheet" type="text/css" href="chat.css"/>
 		<title id="tab">Private Group Chats</title>
+		<style>
+			#msgspan{
+			top:20px;
+			width:600px;
+			margin-left:400px;
+			border:2px white;
+		}
+		#box{
+			bottom:100px;
+			left:500px;
+		}
+		.nmae{
+			font-family: Papyrus, fantasy;
+			text-align:left;
+			font-size:14px;
+		}
+		ul#menu {
+    padding: 0;
+}
+	ul#menu li a {
+		background-color: black;
+		line-height: 300%;
+		color: white;
+		padding: 10px 20px;
+		text-decoration: none;
+		border-radius: 5px 5px 5px 5px;
+	}
+	#menu{
+		position:absolute;
+		left:10px;
+	}
+	ul#menu li a:hover{
+		background-color:white;
+		color:black;
+	}
+	
+	</style>
 	</head>
 	<body>
+	<ul id=menu>
+		<li><a href="Profile.php">My Profile</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
+		<li><a href="discl.html">Discussions</a></li>
+		<li><div id="Create"><a href="creategroup.php">Create new Group</a></div></li>
+		<li><a href="logout.php">Logout</a></li>
+	
+	</ul>
 	<?php
 		//improve indentation of js URGENT!!!!!
-		require_once 'login.php';
-		$connection=new mysqli($db_hostname,$db_username,$db_password,$db_database);
-		if($connection->connect_error) 
-		echo "connect_error:".$db_database.'<br>';
-		if(!isset($_COOKIE['username']))
-		{
-			echo "HAGA NA!";
-			header('Location: /index.php');
-		}	
+		include 'redirect.php';	
 		$me=$_COOKIE['username'];
 		//echo $me;
 		$result=$connection->query("select distinct `name` from `pnmanager` where `member` like '$me'");
@@ -27,7 +65,7 @@
 		}
 		echo "</div>";
 	?>
-	<div id="Create"><a href="creategroup.php">Create new Group</a></div>
+	
 	<div id="msgSpan">RepLaCE</div>
 	
 	<form onsubmit="return false" id="box">

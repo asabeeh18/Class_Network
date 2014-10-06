@@ -12,7 +12,7 @@
 	$s=$_POST['status'];
 	$path="\\images\\$roll.jpg";
 	//echo $path." ";
-	echo move_uploaded_file($_FILES['img']['tmp_name'],"F:\PROgrammin\wamp\www".$path);
+	echo move_uploaded_file($_FILES['img']['tmp_name'],"C:\\xampp\\htdocs".$path);
 	$path=$connection->real_escape_string($path);
 	$e=$connection->real_escape_string($e);
 	//echo $e;
@@ -22,5 +22,5 @@
 	if(!$result) echo "shit:".$connection->error."<br>";
 	echo "<h1>UPDATE SUCCESS redirecting....</h1>";
 	
-	 header( "refresh:2; url=menu.php" ); 
+	 header( "refresh:2; url=Profile.php" ); 
 ?>

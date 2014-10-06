@@ -1,61 +1,124 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Login</title>
-		<style>
-		body
+<head><title>HOME</title>
+<link rel=stylesheet href=style.css>
+<style>
+ul#menu {
+    padding: 0;
+}
+
+
+ul#menu li a {
+    background-color: black;
+    line-height: 300%;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ul#menu li a:hover {
+    background-color: purple;
+}
+
+div.container {
+    width: 40em;
+    border: 0.5em solid;
+}
+
+div.box {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 100px;
+    border: 0.5em solid black;
+    float: left;
+}
+#pikachu{
+
+  width:200px;
+  height:200px;
+  padding:0px;
+  margin: 0 auto;
+  overflow: hidden;
+  position:float;
+}
+#me{
+	position:absolute;
+	max-width:400px;
+	left:300px;
+}
+#menu{
+	position:absolute;
+	left:10px;
+}
+</style>
+</head>
+<body>
+<?php 
+include 'redirect.php';
+		$roll=$_COOKIE['username']; 
+		$str="select `dp`,`name` from `user` where '$roll'=`roll_no`";
+		$result=$connection->query($str);
+		if($result)
 		{
-			background-image: url('img/login.jpg');
-			 -webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		    background-repeat: repeat-x;
-			background-color: #cbc69b;
-			background-position:center;
-			
-  		}
+			$pic=$result->fetch_row();
+			echo "<h1 class=container id=me>$pic[1]</h1>";
+			echo "<img src=$pic[0] class='container' id='pikachu'>"."<br>";
+		}
+		else echo "hAGA NA!".$connection->error;
+?>
 		
-		.container {
-				
-				width: 15%;
-				margin: 2em auto;
-				box-shadow: 0 0 5px #000;
-				padding: 1em;
-				text
-				text-align: center;
-				border-style: solid;
-				border-width: medium;
-			}
-			p {
-				margin: 0;
-				padding: 0;
-			}
+		<ul id=menu>
+		<li><a href="Profile.php">My Profile</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
+		<li><a href="discl.html">Discussions</a></li>
+		<li><a href="logout.php">Logout</a></li>
+		</ul>
 		
-		</style>
-	</head>
-	<body>
-	   <div class="container"><br>
-			<!-- add style to this div in d css or here itself its not visible-->
-		    <div id="wrongPass">
-			<?php if(isset($_GET['try'])) 
+		<div class="container" id=tabl><h1>Todays TimeTable</h1>
+		<?php
+		$today = getdate();
+		$today=$today['wday'];
+		if($today==6 || $today==0)
+		{
+			echo "<h1>REJOICE! Its a Holiday!</h1>";
+		}
+		else 
+		{
+			$sql="select `mon`,`tue`,`wed`,`thur` from `time_table`";
+			$result=$connection->query($sql);
+			if($result)
+			{
+				while($today--)
 				{
-					$try=$_GET['try'];
-					//use css to make it red
-					echo "Wrong Roll Number or Password!<br>TRY AGAIN";
+					$r=$result->fetch_row();
 				}
-				else $try=0;
-			?>
-			</div> 
-			<form method="post" action=logini.php>
-			<b><font size="5" color="#fcfdf3"></b>Roll No.</font> :<input type="text" name="name" placeholder="XXXXXAXXXX" required><br /><br />
-			<b><font size="5" color="#fcfdf3"></b>Password:</font><input type="password" name="password" placeholder required><br /><br />
-			<input type='hidden' name='try' value=<?php echo $try ?>>
-			
-			<input type="checkbox" name="remmbr"><font color="#fcfdf3">Remember Me</font><br>
-			<input type="submit" value="Login"><br /><br />
-			</form>
-			<p><<font size="5S"color="fcfdf3">OR</FONT></p><br />
-			<input type="button" value="SignUp">
-		</div>
+				echo <<< _GO
+					<table>
+					<tr>
+						<th>9-11</th>
+						<th>11:15-1:15</th>
+						<th>1:45-3:45</th>
+						<th>3:45-</th>
+					</tr>
+					<tr>
+					<th>$r[0]</th>
+					<th>$r[1]</th>
+					<th>$r[2]</th>
+					<th>$r[3]</th>
+					</tr>		
+					</table
+_GO;
+			}
+			else
+			{
+				echo "-_-".$connection->error;
+			}
+		}
+		//References
+?>
+</div>
+		</div>		
 	</body>
 </html>

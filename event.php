@@ -2,17 +2,97 @@
 	<head><title>Events</title>
 	<link rel=stylesheet href=style.css>
 	<style>
+		header 
+		 {
+			background-color:#901C1D;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
 		body
 		{
-			background-image: url('img/ref1.jpg');
+			background-image: url('img/events.jpg');
 			 -webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
 			background-size: cover;
   		}
+		#create{
+			width:500px;
+		}
+		footer{
+			
+color: rgb(20, 18, 18);
+font-size: 23px;
+
+text-shadow: rgb(224, 224, 224) 1px 1px 0px;
+
+			text-align:center;
+			position:absolute;
+			bottom:0px;
+		}
+		ul#menu {
+    padding: 0;
+}
+
+
+ul#menu li a {
+    background-color: black;
+    line-height: 300%;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ul#menu li a:hover {
+    background-color: purple;
+}
+
+div.container {
+    width: 40em;
+    border: 0.5em solid;
+}
+
+div.box {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 100px;
+    border: 0.5em solid black;
+    float: left;
+}
+#pikachu{
+
+  width:200px;
+  height:200px;
+  padding:0px;
+  margin: 0 auto;
+  overflow: hidden;
+  position:float;
+}
+#me{
+	position:absolute;
+	max-width:400px;
+	left:300px;
+}
+#menu{
+	position:absolute;
+	left:10px;
+}
 	</style>	
 	</head>
 	<body>
+			<header>
+	<h1>EVENTS</h1>
+	</header>
+	</div>
+			<ul id=menu>
+		<li><a href=index.php>Homepage</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
+		<li><a href="discl.html">Discussions</a></li>
+		<li><a href="logout.php">Logout</a></li>
+		</ul>
 <?php
 	//events
 	include 'redirect.php';
@@ -59,6 +139,10 @@ _GO;
 	</form>
 	</div>
 _GO;
-	echo "</body></html>";
-	//footer and shit
+	//footer
 ?>
+<footer>
+<a href=about.html>About Us</a>
+</footer>
+</body>
+</html>

@@ -2,31 +2,35 @@
 # id
 */
 body{
-	background-color: #eee;
+	background-color: black;
 }
 	
 
 #list
 {
-	padding:2px;
+	padding:10px;
 	width:7em;
+	margin-left:200px;
 	border-width:20px;
-	border-color:#ecf0f1;
+	background-color:black;
+	margin:10px auto 5px 200px;
 }	
 .listEle{
-	background-color:#95a5a6;
-	padding:3px;
-	border-style:solid;
-	border-width:2px;
-	border-color:#ecf0f1;
+	background-color:White;
+	color:Black;
+	padding:5px;
+	margin:10px;
 }	
 .him{
 	text-align:left;
-	background-color:yellow;
+	background-color:black;
+	color:white;
 }
 .me{
+	
 	text-align:right;
-	background-color:RED;
+	background-color:white;
+	color:black;
 }
 
 ::-webkit-scrollbar {
@@ -46,7 +50,7 @@ body{
 .container,#msgspan
 {
 	position:absolute;
-	background-color: yellow;
+	background-color: white;
 	height:auto;
 	width:400px;
 	max-height:300px;
@@ -71,6 +75,11 @@ body{
 	max-width:;
 	
 }
+.nmae{
+			font-family: Papyrus, fantasy;
+			text-align:left;
+			font-size:14px;
+		}
 
 #box
 {
@@ -78,4 +87,13 @@ body{
 	bottom:-100px;
 	left:200px;
 	padding:0px;
+}
+#send_button{
+			background-color:black;
+			border:0px;
+			color:white;
+		}
+.list .listEle a:hover{
+	backgroud-color:black;
+	color:white;
 }

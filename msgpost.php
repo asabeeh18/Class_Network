@@ -22,7 +22,7 @@ if(isset($_POST['roll']))
 	//echo "him          ".$roll."<br>";
 	$r2=$result2->fetch_row();
 	$r1=$result1->fetch_row();
-	//header('Location: /index.php');
+	//header('Location: /enter.php');
 	for($i=0,$j=0;$i<$result1->num_rows || $j<$result2->num_rows;)
 	{
 		//echo "in";

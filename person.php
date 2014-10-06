@@ -11,7 +11,7 @@ body{
 }
 ul#menu {
     padding: 0;
-	width:170px;
+	width:150px;
 	position:absolute;
 	left:0px;
 }
@@ -40,16 +40,17 @@ ul{
   overflow: hidden;
   position:float;
 }
+tr{
+	padding:0px;
+}
 	</style>
 	</head>
 	<body>
 	<ul id=menu>
-		<li><a href=index.php>Homepage</a></li>
+		<li><a href="Profile.php">My Profile</a></li>
 		<li><a href="ref.php">References</a></li>
 		<li><a href="event.php">Events</a></li>
 		<li><a href="discl.html">Discussions</a></li>
-		<li><a href=searchppl.php>Search for people</a></li>
-		<li><a href=editprofile.php>Edit my profile</a></li>
 		<li><a href="logout.php">Logout</a></li>
 		</ul>
 		
@@ -57,7 +58,7 @@ ul{
 <?php
 	include 'redirect.php';
 		$name="YO";	
-	$me=$_COOKIE['username'];
+	$me=$_GET['roll'];
 	$sql="select `dp`,`roll_no`,`email_id`,`name`,`phno`,`gender`,`bday`,`status`,`about` from `user` where `roll_no` like '$me'";
 	$result=$connection->query($sql);
 	$r=$result->fetch_row();
@@ -88,7 +89,7 @@ ul{
 		
 					</td>
 				</tr>
-			</table
+			</table>
 		</div>
 		<div class="container">
 		<div class="status">

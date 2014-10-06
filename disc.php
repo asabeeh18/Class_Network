@@ -1,8 +1,51 @@
 <html>
 	<head><title id="tab">Single Chats</title>
 		<link rel=stylesheet type=text/css href=chat.css>
+		<style>
+			#msgspan{
+			top:-200px;
+			width:400px;
+			margin-left:300px;
+			border:2px white;
+		}
+		#box{
+			top:200px;
+			left:400px;
+		}
+		.nmae{
+			font-family: Papyrus, fantasy;
+			text-align:left;
+			font-size:14px;
+		}
+		ul#menu {
+    padding: 0;
+}
+	ul#menu li a {
+		background-color: black;
+		line-height: 300%;
+		color: white;
+		padding: 10px 20px;
+		text-decoration: none;
+		border-radius: 5px 5px 5px 5px;
+	}
+	#menu{
+		position:absolute;
+		left:10px;
+	}
+	ul#menu li a:hover{
+		background-color:white;
+		color:black;
+	}
+	</style>
 	</head>	
 	<body>
+	<ul id=menu>
+		<li><a href="Profile.php">My Profile</a></li>
+		<li><a href="ref.php">References</a></li>
+		<li><a href="event.php">Events</a></li>
+		<li><a href="discl.html">Discussions</a></li>
+		<li><a href="logout.php">Logout</a></li>
+	</ul>
 	<?php
 		
 		require_once 'login.php';
@@ -12,7 +55,7 @@
 		if(!isset($_COOKIE['username']))
 		{
 			echo "HAGA NA!";
-			header('Location: /index.php');
+			header('Location: /enter.php');
 		}	
 		$me= $_COOKIE['username'];
 		echo $me;

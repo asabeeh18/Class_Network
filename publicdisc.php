@@ -19,7 +19,7 @@ if(isset($_POST['load']))
 	
 	if(!$result1 || !$result2) echo "Query Error!!@18";
 	//$rows=(($result1->num_rows)<($result2->num_rows))?$result1->num_rows:$result2->num_rows;
-	//echo "YOU          <br>";
+	//echo "him          <br>";
 	$r2=$result2->fetch_row();
 	$r1=$result1->fetch_row();
 	//echo "in";
@@ -28,7 +28,8 @@ if(isset($_POST['load']))
 		//echo "in";
 		if(($r1[1]<$r2[1] && $i<$result1->num_rows) || $j==$result2->num_rows)
 		{
-			echo "<div class=\"you\">".$r1[0]."::".$r1[1]."</div>";
+			echo "<div class=\"nmae\">".$r1[0]."</div>";
+			echo "<div class=\"him\">".$r1[1]."</div>";
 			$r1=$result1->fetch_row();
 			$i++;
 		}
@@ -45,13 +46,13 @@ if(isset($_POST['load']))
  
 else if(isset($_POST['msg']))
 {
-	echo "setmsg";
+	//echo "setmsg";
 	$msg=$_POST['msg'];
 	//echo $msg." ".$roll." ".$me;
 	$sql = "INSERT INTO `publicdisc` (`sender`, `msg`) VALUES ('$me', '$msg');";
 	$result=$connection->query($sql);
-	if(!$result) die("Query Error");
-	else echo "<div class=\"me\">".$msg."</div>";
+	if(!$result) echo "Query Error";
+	//else echo "<div class=\"me\">".$msg."</div>";
 }
 else if(isset($_POST['check']))
 {
@@ -63,9 +64,9 @@ else if(isset($_POST['check']))
 	else
 	{
 		$r=$result->fetch_row();
-		for($i=0;$i<$r[1];$i++)
+		for($i=0;$i<$result->num_rows;$i++)
 		{
-			echo "<div class=\"you\">".$r[0]."</div>";
+			echo "<div class=\"him\">".$r[0]."</div>";
 			$r=$result->fetch_row();
 		}
 		//echo "out";

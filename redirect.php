@@ -9,7 +9,7 @@
 		if(!isset($_COOKIE['username']))
 		{
 			echo "HAGA NA!";
-			header('Location: /index.php');
+			header('Location: /enter.php');
 		}
 		
 ?>
