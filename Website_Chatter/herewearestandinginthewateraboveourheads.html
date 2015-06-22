@@ -1,0 +1,90 @@
+<html>
+	
+	<script>
+		var num=0;
+		//document.onload=setInterval(function(){keepCallingMeForeveandEverAndEver(num)},1000);
+		function throughMe()
+		{
+			var msg=document.getElementById("message_input").value;
+			//alert(
+			losersDontText(msg);
+			document.getElementById('msgInMe').innerHTML +='<div class="me">'+msg+'</div>';
+			document.getElementById("msgInMe").scrollTop= document.getElementById("msgInMe").scrollHeight;
+			//alert(msg);
+		}
+				function ajaja(file,POST_DATA)
+		{
+			request = new ajaxRequest()
+			request.open("POST",file,true)
+			request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+			//alert(file);
+			
+			//alert("send");
+			request.send(POST_DATA)
+			request.onreadystatechange = function()
+			{
+				//alert(this.readyState);
+				if (this.readyState == 4)
+				{
+					if (this.status == 200)
+					{
+						if (this.responseText != null)
+						{
+							alert("fired");
+							
+							alert(this.responseText);
+							return this.responseText;
+						}
+						else alert("Ajax error: No data received")
+					}
+					else alert( "Ajax error: " + this.statusText)
+				}
+			}
+		}
+		function keepCallingMeForeveandEverAndEver(num)
+		{
+			if(ajaja('maxnum.php')>num)
+			{	
+				return ajaja("takeItOut.php","num="+num);
+			}
+		}
+		function losersDontText(msg)
+		{
+			var ok=ajaja('putItIn.php',"msg="+msg);
+			alert("return:"+ok);
+		}
+		function ajaxRequest()
+		{
+			try
+			{
+				var request = new XMLHttpRequest()
+			}
+			catch(e1)
+			{
+				try
+				{
+					request = new ActiveXObject("Msxml2.XMLHTTP")
+				}
+				catch(e2)
+				{
+					try
+					{		
+						request = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch(e3)
+					{	
+						request = false
+					}
+				}
+			}
+			return request
+		}
+	</script>
+	<form method="post" action=addme.php>
+	
+	<div id="msgInMe">.</div>
+	<form onsubmit="return false" id="box">
+                <input type=text id="message_input">
+                <input onclick="throughMe()" type="submit" id="send_button">
+	</form>
+	

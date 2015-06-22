@@ -1,0 +1,43 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+
+<script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="am.css">
+</head>
+<body>
+	<p>aaa</p>
+<div id="sidebar">
+    <div id="chartwrapper">
+        <div id="chartdiv"></div>
+    </div>
+</div>
+<script>
+function ooo()
+{
+	var chart = AmCharts.makeChart("chartdiv", {
+		"type": "pie",
+		"theme": "none",
+		"compared": false,
+      "categoryField": "Date",
+		"dataLoader": {
+      "url": "SLA.csv",
+      "format": "csv",
+	  "showCurtain": true,
+        "showErrors": true,
+        "async": true,
+        "reverse": true,
+        "delimiter": ",",
+        "useColumnNames": true,
+		"skip": 1 ,
+	  // skip header row
+    },
+	});
+	
+}
+document.onload=ooo;
+</script>
+</body>
+</html>

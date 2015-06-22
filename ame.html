@@ -1,0 +1,38 @@
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
+<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+<link rel="stylesheet" type="text/css" href="am.css">
+<script>
+	var chart = AmCharts.makeChart("chartdiv", {
+    "type": "pie",
+	"theme": "none",
+    "dataProvider": [
+{
+        "country": "Lithuania",
+        "litres": 501.9
+    },
+{
+        "country": "Czech Republic",
+        "litres": 301.9
+    }, {
+        "country": "Ireland",
+        "litres": 201.1
+    }, {
+        "country": "Germany",
+        "litres": 165.8
+    }, {
+        "country": "Australia",
+        "litres": 139.9
+    }],
+    "valueField": "litres",
+    "titleField": "country",
+    //"radius": "28%",
+    "labelRadius": 4,
+    "labelText": "[[percents]]%"
+});
+	</script>
+<div id="sidebar">
+	<div id="chartwrapper">
+        <div id="chartdiv"></div>
+    </div>
+</div>

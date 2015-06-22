@@ -47,7 +47,7 @@ else if(isset($_POST['msg']))
 	//echo $roll."---".$msg;
 	$sql = "INSERT INTO `priv1disc` (`receiver`, `sender`, `msg`, `time`) VALUES ('$roll', '$me', '$msg', sysdate(6));";
 	$result=$connection->query($sql);
-	if(!$result) die("Query Error 50".$connection->error);
+	if(!$result) echo "Query Error 50".$connection->error;
 	else echo "<div class=\"me\">".$msg."</div>";
 }
 else if(isset($_POST['check']))
